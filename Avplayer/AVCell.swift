@@ -13,12 +13,16 @@ import AVFoundation
 class AVCell: UITableViewCell {
     var videoLayer: AVPlayerLayer = AVPlayerLayer()
     @IBOutlet weak var avPlayerView: UIView!
+
+    var videoURL = URL(string:  "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148815250094987_cropped.mp4")
     override func awakeFromNib() {
         super.awakeFromNib()
 //        let path = Bundle.main.path(forResource: "video", ofType: "mp4")
         
-        let videoURL = URL(string:  "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148815250094987_cropped.mp4")
 
+    }
+    
+    func createPlayer() {
         let player = AVPlayer(url: videoURL!)
         videoLayer.player = player
         videoLayer.frame = avPlayerView.bounds
