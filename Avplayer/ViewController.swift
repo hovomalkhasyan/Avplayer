@@ -58,17 +58,38 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     }
    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let cells = tableView.visibleCells
+//        for value in cells {
+//
+//            if let cell = value as? AVCell {
+//                if cell.videoLayer.bounds.origin.y == view.bounds.origin.y/2 {
+//                    cell.videoLayer.player?.play()
+//                } else {
+//                    cell.videoLayer.player?.pause()
+//                }
+//            }
+//        }
+//    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let cells = tableView.visibleCells
-        for value in cells {
+            if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
+                var focusCell: AVCell?
 
-            if let cell = value as? AVCell {
-                if cell.videoLayer.bounds.origin.y == view.bounds.origin.y/2 {
-                    cell.videoLayer.player?.play()
-                }else {
-                    cell.videoLayer.player?.pause()
+                for indexPath in indexPathsForVisibleRows {
+                    if let cell = tableView.cellForRow(at: indexPath) as? AVCell {
+                        if focusCell == nil {
+                            let rect = tableView.rectForRow(at: indexPath)
+                            if tableView.bounds.contains(rect) {
+                                cell.videoLayer.player?.play()
+                                focusCell = cell
+                            } else {
+                                 cell.videoLayer.player?.pause()
+                            }
+                        } else {
+                             cell.videoLayer.player?.pause()
+                        }
+                    }
                 }
             }
         }
-    }
 }
