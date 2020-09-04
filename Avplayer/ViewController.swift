@@ -35,42 +35,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AVCell", for: indexPath) as! AVCell
-//
-//        let videoURL = URL(string: videoArray[indexPath.row])
-//        let player = AVPlayer(url: videoURL!)
-//        let layer = AVPlayerLayer(player: player)
-//        layer.frame = cell.bounds
-//        cell.layer.addSublayer(layer)
-//        player.play()
-//
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        return 400
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? AVCell else {return}
-//            cell.videoLayer.player?.play()
-        print("Video is stoped")
-        
-    }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    }
-   
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let cells = tableView.visibleCells
-//        for value in cells {
-//
-//            if let cell = value as? AVCell {
-//                if cell.videoLayer.bounds.origin.y == view.bounds.origin.y/2 {
-//                    cell.videoLayer.player?.play()
-//                } else {
-//                    cell.videoLayer.player?.pause()
-//                }
-//            }
-//        }
-//    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
             if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
                 var focusCell: AVCell?
