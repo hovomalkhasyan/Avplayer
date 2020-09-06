@@ -22,18 +22,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableViewSetups()
-        
+
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewSetups()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        tableViewSetups()
-
-    }
+    
     private func tableViewSetups() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -53,8 +49,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.createPlayer()
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return self.view.bounds.height / 2
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -78,4 +75,5 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
+    
 }
