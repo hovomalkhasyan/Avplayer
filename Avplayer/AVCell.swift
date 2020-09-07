@@ -12,15 +12,15 @@ import AVKit
 import AVFoundation
 
 class AVCell: UITableViewCell {
-    var videoLayer: AVPlayerLayer = AVPlayerLayer()
-    @IBOutlet weak var videoLendthLabel: UILabel!
-    @IBOutlet weak var sliderOutlet: UISlider!
+//MARK: Outlets
     @IBOutlet weak var avPlayerView: UIView!
     @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet weak var speakerOn: UIImageView!
-    
+
+//MARK: Properties
+ 
     var isPlaying = false
-    
+    var videoLayer: AVPlayerLayer = AVPlayerLayer()
     var videoURL : URL?
     
     override func awakeFromNib() {
@@ -29,8 +29,6 @@ class AVCell: UITableViewCell {
             self.speakerOn.isHidden = true
         }
         buttonOutlet.alpha = 0
-        sliderOutlet.minimumTrackTintColor = .red
-        sliderOutlet.maximumTrackTintColor = .white
     }
     
     
@@ -65,6 +63,7 @@ class AVCell: UITableViewCell {
             self.buttonOutlet.alpha = 0
         }
     }
+    
     @IBAction func startButton(_ sender: UIButton) {
         if isPlaying {
             videoLayer.player?.pause()

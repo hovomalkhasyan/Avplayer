@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 class ViewController: UIViewController {
+//MARK: Properties
     let player = AVPlayer()
     let videoArray = ["https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148817616325109_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148817214585222_cropped.mp4",
@@ -22,11 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         tableViewSetups()
     }
     
