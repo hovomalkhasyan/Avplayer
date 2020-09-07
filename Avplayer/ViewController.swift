@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     private func tableViewSetups() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = self.view.bounds.height / 2
+        tableView.separatorStyle = .none
+
     }
     
 }
@@ -45,8 +48,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AVCell", for: indexPath) as! AVCell
-        cell.videoURL = URL(string: videoArray[indexPath.row])
+        let stringUrl = videoArray[indexPath.row]
+        cell.videoURL = URL(string: stringUrl)
         cell.createPlayer()
+        cell.bringSubviewToFront(cell.buttonOutlet)
         return cell
     }
     
@@ -67,13 +72,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                             focusCell = cell
                         } else {
                             cell.videoLayer.player?.pause()
+                            cell.videoLayer.player?.cancelPendingPrerolls()
                         }
                     } else {
                         cell.videoLayer.player?.pause()
+                        cell.videoLayer.player?.cancelPendingPrerolls()
                     }
                 }
             }
         }
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         let stringUrl = videoArray[indexPath.row]
+        CacheManager.shared.getFileWith(stringUrl: stringUrl) { (result) in
+            switch result {
+            case .success(_):
+                print("load ")
+                
+            case .failure(_):
+                print("Error")
+            }
+        }
+    }
 }

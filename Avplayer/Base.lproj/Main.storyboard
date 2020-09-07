@@ -27,32 +27,49 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwR-ws-nU7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker" translatesAutoresizingMaskIntoConstraints="NO" id="e3X-Re-XGg">
-                                                            <rect key="frame" x="381" y="8" width="25" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="E9G-U3-S6g"/>
-                                                                <constraint firstAttribute="height" constant="25" id="MQK-0k-wyz"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
+                                                    <rect key="frame" x="0.0" y="10" width="414" height="280"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="e3X-Re-XGg" firstAttribute="top" secondItem="lwR-ws-nU7" secondAttribute="top" constant="8" id="9TW-Vq-ZSS"/>
-                                                        <constraint firstAttribute="trailing" secondItem="e3X-Re-XGg" secondAttribute="trailing" constant="8" id="lOW-h7-Ds4"/>
-                                                    </constraints>
+                                                    <gestureRecognizers/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="1qp-H7-8AZ" appends="YES" id="oic-ax-7ZW"/>
+                                                        <outletCollection property="gestureRecognizers" destination="hCS-0z-oQ4" appends="YES" id="aFh-4y-82w"/>
+                                                    </connections>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sg-H0-VYB">
+                                                    <rect key="frame" x="182" y="125" width="50" height="50"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="9qb-57-ovM"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ig4-E2-rkI"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="pause"/>
+                                                    <connections>
+                                                        <action selector="startButton:" destination="qZS-5k-6Am" eventType="touchUpInside" id="W4a-A1-VJI"/>
+                                                        <outletCollection property="gestureRecognizers" destination="oWY-rh-hK0" appends="YES" id="d1f-es-TL5"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speaker" translatesAutoresizingMaskIntoConstraints="NO" id="e3X-Re-XGg">
+                                                    <rect key="frame" x="357" y="23" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="E9G-U3-S6g"/>
+                                                        <constraint firstAttribute="height" constant="25" id="MQK-0k-wyz"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="e3X-Re-XGg" firstAttribute="top" secondItem="dSR-Wl-CYQ" secondAttribute="topMargin" constant="12" id="1ha-ek-dtU"/>
                                                 <constraint firstItem="lwR-ws-nU7" firstAttribute="leading" secondItem="dSR-Wl-CYQ" secondAttribute="leading" id="3WI-KY-if5"/>
+                                                <constraint firstItem="0Sg-H0-VYB" firstAttribute="centerX" secondItem="lwR-ws-nU7" secondAttribute="centerX" id="K0P-lk-qjd"/>
                                                 <constraint firstAttribute="trailing" secondItem="lwR-ws-nU7" secondAttribute="trailing" id="ZGg-bo-ORj"/>
-                                                <constraint firstItem="lwR-ws-nU7" firstAttribute="top" secondItem="dSR-Wl-CYQ" secondAttribute="top" id="q6m-YB-4eQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="lwR-ws-nU7" secondAttribute="bottom" id="qLz-uC-Dc0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e3X-Re-XGg" secondAttribute="trailing" constant="12" id="ZyI-M1-kwH"/>
+                                                <constraint firstItem="0Sg-H0-VYB" firstAttribute="centerY" secondItem="lwR-ws-nU7" secondAttribute="centerY" id="pQZ-wz-DW0"/>
+                                                <constraint firstItem="lwR-ws-nU7" firstAttribute="top" secondItem="dSR-Wl-CYQ" secondAttribute="top" constant="10" id="q6m-YB-4eQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="lwR-ws-nU7" secondAttribute="bottom" constant="10" id="qLz-uC-Dc0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avPlayerView" destination="lwR-ws-nU7" id="mdu-75-GvQ"/>
+                                            <outlet property="buttonOutlet" destination="0Sg-H0-VYB" id="v0T-Hm-ExO"/>
                                             <outlet property="speakerOn" destination="e3X-Re-XGg" id="VaL-dP-6cD"/>
                                         </connections>
                                     </tableViewCell>
@@ -73,11 +90,15 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1qp-H7-8AZ"/>
+                <tapGestureRecognizer id="oWY-rh-hK0"/>
+                <gestureRecognizer id="hCS-0z-oQ4"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </scene>
     </scenes>
     <resources>
+        <image name="pause" width="512" height="512"/>
         <image name="speaker" width="512" height="512"/>
     </resources>
 </document>

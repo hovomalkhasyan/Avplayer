@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA41213025060A29005E5D72 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA41212F25060A29005E5D72 /* CacheManager.swift */; };
 		DAF7C1F825013764009344A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7C1F725013764009344A6 /* AppDelegate.swift */; };
 		DAF7C1FA25013764009344A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7C1F925013764009344A6 /* SceneDelegate.swift */; };
 		DAF7C1FC25013764009344A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7C1FB25013764009344A6 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA41212F25060A29005E5D72 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		DAF7C1F425013764009344A6 /* Avplayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avplayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF7C1F725013764009344A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF7C1F925013764009344A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				DAF7C2022501376A009344A6 /* LaunchScreen.storyboard */,
 				DAF7C2052501376A009344A6 /* Info.plist */,
 				DAF7C20D25013CA6009344A6 /* Protocols.swift */,
+				DA41212F25060A29005E5D72 /* CacheManager.swift */,
 			);
 			path = Avplayer;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				DAF7C1FC25013764009344A6 /* ViewController.swift in Sources */,
 				DAF7C1F825013764009344A6 /* AppDelegate.swift in Sources */,
 				DAF7C20C250137C4009344A6 /* AVCell.swift in Sources */,
+				DA41213025060A29005E5D72 /* CacheManager.swift in Sources */,
 				DAF7C1FA25013764009344A6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
