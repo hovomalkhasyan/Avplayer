@@ -15,7 +15,7 @@ class AVCell: UITableViewCell {
 //MARK: Outlets
     @IBOutlet weak var avPlayerView: UIView!
     @IBOutlet weak var buttonOutlet: UIButton!
-    @IBOutlet weak var speakerOn: UIImageView!
+    @IBOutlet weak var speakerButtonOutlet : UIButton!
 
 //MARK: Properties
  
@@ -26,7 +26,7 @@ class AVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
-            self.speakerOn.isHidden = true
+            self.speakerButtonOutlet.alpha = 0
         }
         buttonOutlet.alpha = 0
     }
@@ -38,7 +38,6 @@ class AVCell: UITableViewCell {
         videoLayer.frame = avPlayerView.bounds
         videoLayer.videoGravity = .resizeAspectFill
         avPlayerView.layer.addSublayer(videoLayer)
-//        player.cancelPendingPrerolls()
         stoppdPlayer()
         
     }
@@ -49,18 +48,11 @@ class AVCell: UITableViewCell {
     }
     
     @objc func wasStopd() {
-        speakerOn.isHidden = false
         buttonOutlet.alpha = 1
-        if videoLayer.player?.volume == 1.0 {
-            videoLayer.player?.volume = 0.0
-            speakerOn.image = UIImage(named: "mute")
-        }else {
-            videoLayer.player?.volume = 1.0
-            speakerOn.image = UIImage(named: "speaker")
-        }
-        Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { (timer) in
-            self.speakerOn.isHidden = true
+        speakerButtonOutlet.alpha = 1
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
             self.buttonOutlet.alpha = 0
+            self.speakerButtonOutlet.alpha = 0
         }
     }
     
@@ -79,6 +71,20 @@ class AVCell: UITableViewCell {
         
     }
    
+    @IBAction func speakerOnBtn(_ sender: UIButton) {
+         buttonOutlet.isHidden = false
+        if videoLayer.player?.volume == 1.0 {
+            videoLayer.player?.volume = 0.0
+            speakerButtonOutlet.setImage(UIImage(named: "mute"), for: .normal)
+        }else {
+            videoLayer.player?.volume = 1.0
+            speakerButtonOutlet.setImage(UIImage(named: "speaker"), for: .normal)
+        }
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
+            
+            self.speakerButtonOutlet.alpha = 0
+        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
