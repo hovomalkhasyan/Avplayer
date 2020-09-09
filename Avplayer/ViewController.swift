@@ -10,15 +10,13 @@ import UIKit
 import AVFoundation
 import AVKit
 class ViewController: UIViewController {
-//MARK: Properties
-    let player = AVPlayer()
+    //MARK: Properties
     let videoArray = ["https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148817616325109_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148817214585222_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148816379670003_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148815787535811_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148815250094987_cropped.mp4",
                       "https://media.e11evate.co.uk/api/Image/Download/CroppedPostFile/video-637148809444612265_cropped.mp4"]
-    
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -46,8 +44,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AVCell", for: indexPath) as! AVCell
         let stringUrl = videoArray[indexPath.row]
         cell.videoURL = URL(string: stringUrl)
+        cell.download()
         cell.createPlayer()
-        cell.bringSubviewToFront(cell.buttonOutlet)
         return cell
     }
     
@@ -68,26 +66,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                             focusCell = cell
                         } else {
                             cell.videoLayer.player?.pause()
-                            cell.videoLayer.player?.cancelPendingPrerolls()
                         }
                     } else {
                         cell.videoLayer.player?.pause()
-                        cell.videoLayer.player?.cancelPendingPrerolls()
                     }
                 }
             }
         }
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-         let stringUrl = videoArray[indexPath.row]
-        CacheManager.shared.getFileWith(stringUrl: stringUrl) { (result) in
-            switch result {
-            case .success(_):
-                print("load ")
-                
-            case .failure(_):
-                print("Error")
-            }
-        }
+            
+        print("ok")
     }
 }

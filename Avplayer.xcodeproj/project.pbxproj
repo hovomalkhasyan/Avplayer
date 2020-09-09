@@ -15,7 +15,6 @@
 		DAF7C2012501376A009344A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF7C2002501376A009344A6 /* Assets.xcassets */; };
 		DAF7C2042501376A009344A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF7C2022501376A009344A6 /* LaunchScreen.storyboard */; };
 		DAF7C20C250137C4009344A6 /* AVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7C20B250137C4009344A6 /* AVCell.swift */; };
-		DAF7C20E25013CA6009344A6 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7C20D25013CA6009344A6 /* Protocols.swift */; };
 		DAFEAD01250233A10074B311 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DAFEAD00250233A10074B311 /* video.mp4 */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +29,6 @@
 		DAF7C2032501376A009344A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAF7C2052501376A009344A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF7C20B250137C4009344A6 /* AVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCell.swift; sourceTree = "<group>"; };
-		DAF7C20D25013CA6009344A6 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DAFEAD00250233A10074B311 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +71,6 @@
 				DAF7C2002501376A009344A6 /* Assets.xcassets */,
 				DAF7C2022501376A009344A6 /* LaunchScreen.storyboard */,
 				DAF7C2052501376A009344A6 /* Info.plist */,
-				DAF7C20D25013CA6009344A6 /* Protocols.swift */,
 				DA41212F25060A29005E5D72 /* CacheManager.swift */,
 			);
 			path = Avplayer;
@@ -151,7 +148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF7C20E25013CA6009344A6 /* Protocols.swift in Sources */,
 				DAF7C1FC25013764009344A6 /* ViewController.swift in Sources */,
 				DAF7C1F825013764009344A6 /* AppDelegate.swift in Sources */,
 				DAF7C20C250137C4009344A6 /* AVCell.swift in Sources */,
