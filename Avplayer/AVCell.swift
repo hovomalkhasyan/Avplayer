@@ -25,6 +25,7 @@ class AVCell: UITableViewCell {
     var videoURL : URL?
     var player = AVPlayer()
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
@@ -34,28 +35,40 @@ class AVCell: UITableViewCell {
     }
     
     func createPlayer() {
-
-        playerItem = AVPlayerItem(url: videoURL!)
+        let asset = AVAsset(url: videoURL!)
+        playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
         videoLayer.player = player
         videoLayer.frame = avPlayerView.bounds
         videoLayer.videoGravity = .resizeAspectFill
+        avPlayerView.backgroundColor = .black
         avPlayerView.layer.addSublayer(videoLayer)
+        
+        player.play()
         stoppdPlayer()
         
     }
     
-    func downloadTask() {
-        
-        let task = URLSession.shared.downloadTask(with: videoURL!) { (localURL, urlResponse, error) in
-            print( "url response is \(urlResponse?.url ?? nil)" )
-            if let localURL = localURL {
-                if let string = try? String(contentsOf: localURL) {
-                    print(string)
+    func getThumbnailFromImage(url: URL, completion: @escaping ((_ image: UIImage?) -> Void )) {
+        DispatchQueue.global().async {
+            let asset = AVAsset(url: url)
+            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            avAssetImageGenerator.appliesPreferredTrackTransform = true
+            
+            let thumbilTime = CMTimeMake(value: 7, timescale: 1)
+            
+            do {
+                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumbilTime, actualTime: nil)
+                let thumbImage = UIImage(cgImage: cgThumbImage)
+                
+                DispatchQueue.main.async {
+                    completion(thumbImage)
                 }
+                
+            }catch {
+                print(error.localizedDescription)
             }
         }
-        task.resume()
     }
     
     func download() {
@@ -74,19 +87,21 @@ class AVCell: UITableViewCell {
             } catch {
                 print ("file error: \(error)")
             }
-            print("response url is \(responseOrNil?.url)")
+            print("response url is \(String(describing: responseOrNil?.url))")
         }
         downloadTask.resume()
     }
     
-    private func stoppdPlayer(){
+    private func stoppdPlayer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(wasStopd))
         avPlayerView.addGestureRecognizer(tap)
     }
     
     @objc func wasStopd() {
-        buttonOutlet.alpha = 1
-        speakerButtonOutlet.alpha = 1
+        UIView.animate(withDuration: 1) {
+            self.buttonOutlet.alpha = 1
+            self.speakerButtonOutlet.alpha = 1
+        }
   
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
             self.buttonOutlet.alpha = 0

@@ -43,9 +43,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AVCell", for: indexPath) as! AVCell
         let stringUrl = videoArray[indexPath.row]
-        cell.videoURL = URL(string: stringUrl)
-        cell.download()
-        cell.createPlayer()
+        UIView.animate(withDuration: 2, delay: 0.5, options: .beginFromCurrentState, animations: {
+            cell.videoURL = URL(string: stringUrl)
+            cell.createPlayer()
+        })
         return cell
     }
     
@@ -56,7 +57,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
             var focusCell: AVCell?
-            
+
             for indexPath in indexPathsForVisibleRows {
                 if let cell = tableView.cellForRow(at: indexPath) as? AVCell {
                     if focusCell == nil {
@@ -66,6 +67,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                             focusCell = cell
                         } else {
                             cell.videoLayer.player?.pause()
+                             cell.buttonOutlet.setImage(UIImage(named: "pause"), for: .normal)
                         }
                     } else {
                         cell.videoLayer.player?.pause()
